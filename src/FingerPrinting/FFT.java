@@ -1,5 +1,4 @@
-
-public class FFT 
+public class FFT
 {
 	/**
      * The Fast Fourier Transform (generic version, with NO optimizations).
@@ -58,7 +57,7 @@ public class FFT
 	for (int l = 1; l <= nu; l++) {
 	    while (k < n) {
 		for (int i = 1; i <= n2; i++) {
-		    p = bitreverseReference(k >> nu1, nu);
+		    p = bitreversereference(k >> nu1, nu);
 		    // direct FFT or inverse FFT
 		    arg = constant * p / n;
 		    c = Math.cos(arg);
@@ -82,7 +81,7 @@ public class FFT
 	k = 0;
 	int r;
 	while (k < n) {
-	    r = bitreverseReference(k, nu);
+	    r = bitreversereference(k, nu);
 	    if (r > k) {
 		tReal = xReal[k];
 		tImag = xImag[k];
@@ -99,7 +98,8 @@ public class FFT
 	// it's here to readibility).
 	double[] newArray = new double[xReal.length * 2];
 	double radice = 1 / Math.sqrt(n);
-	for (int i = 0; i < newArray.length; i += 2) {
+	for (int i = 0; i < newArray.length; i += 2) 
+	{
 	    int i2 = i / 2;
 	    // I used Stephen Wolfram's Mathematica as a reference so I'm going
 	    // to normalize the output while I'm copying the elements.
@@ -112,15 +112,18 @@ public class FFT
     /**
      * The reference bitreverse function.
      */
-    private static int bitreverseReference(int j, int nu) {
-	int j2;
-	int j1 = j;
-	int k = 0;
-	for (int i = 1; i <= nu; i++) {
-	    j2 = j1 / 2;
-	    k = 2 * k + j1 - 2 * j2;
-	    j1 = j2;
-	}
+    private static int bitreversereference(int j, int nu) 
+    {
+    	
+    	int j2;
+		int j1 = j;
+		int k = 0;
+		for (int i = 1; i <= nu; i++) 
+		{
+	    	j2 = j1 / 2;
+	    	k = 2 * k + j1 - 2 * j2;
+	    	j1 = j2;
+		}
 	return k;
     }
 }
