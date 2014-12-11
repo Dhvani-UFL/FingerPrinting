@@ -13,7 +13,7 @@ public class FingerPrintGenerator
             return i;
     }
 	
-	public void Generatefingerprint(InputStream inStream) throws IOException
+	public String Generatefingerprint(InputStream inStream) throws IOException
 	{
 		int Chunk_size = 4096;
 		Mp3tobyteConverter object1 = new Mp3tobyteConverter();
@@ -68,7 +68,21 @@ public class FingerPrintGenerator
 		        }
 		    }
 		    
-		   
+ 		    
+ 		    // Here, we will be creating a string which has the frequency, given by the elements 
+ 		    // of the record points and the approximate time of the song given by the index of the song
+ 		   // This string is used by the search 
+		   // module to match songs
+ 		    String fingerprint = "";
+ 		    for (int i = 0; i < recordPoints.length; i++)
+ 		    {
+ 		    	fingerprint =  fingerprint + recordPoints[i].ToString() + ":" + i.ToString() + "," ;
+ 		    }
+ 		    
+ 		    return fingerprint;
+ 		    
+ 		    
+ 		    
 		}
 
 	}
